@@ -1,11 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="row">
+    <div class="col-xl-12">
 <!--begin::Card-->
 <div class="card card-custom">
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">Budgets
+            <h3 class="card-label">Expenses
             <span class="d-block text-muted pt-2 font-size-sm">Datatable initialized from budgets table</span></h3>
         </div>
         <div class="card-toolbar">
@@ -25,41 +27,79 @@
             <!--end::Button-->
         </div>
     </div>
-
-    <div class="card-body">
-    <!--begin: Datatable-->
-        <table class="table table-striped table-responsive">
-            <thead class="thead-dark">
-                <tr>
-                    <th  class="col-1">ID</th>
-                    <th  class="col-3">User ID</th>
-                    <th  class="col-3">Date</th>
-                    <th  class="col-3">Amount</th>
-                    <th  class="col-3">Payment Method</th>
-                    <th  class="col-3">Remarks</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($expenses as $expense )
-                <tr>
-                    <td>{{ $expense->id }}</td>
-                    <td>{{ $expense->name}}</td>
-                    <td>{{ $expense->exp_date }}</td>
-                    <td>{{ $expense->exp_amount }}</td>
-                    <td>{{ $expense->pay_name }}</td>
-                    <td>{{ $expense->exp_remarks }}</td>
-                    
-                    <td>
-                        {{-- <a href="{{ route('budgets.edit',$budget->id) }}" class="btn btn-primary font-weight-bolder"><i class="flaticon-edit-1"></i></a> --}}
-                    </td>
-
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <!--end: Datatable-->    
+</div>
     </div>
 </div>
 <!--end::Card-->
+
+@foreach($expenses as $expense )
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b card-stretch">
+            <!--begin::Body-->
+            <div class="card-body">
+                <!--begin::Section-->
+                <div class="d-flex align-items-center">
+                    <!--begin::Pic-->
+                    <div class="flex-shrink-0 mr-4 symbol symbol-65 symbol-circle">
+                        <img src="assets/media/project-logos/3.png" alt="image" />
+                    </div>
+                    <!--end::Pic-->
+                    <!--begin::Info-->
+                    <div class="d-flex flex-column mr-auto">
+                        <!--begin: Title-->
+                        <a href="#" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $expense->exp_description }}</a>
+                        <span class="text-muted font-weight-bold">{{ $expense->name}}</span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Info-->
+                </div>
+                <!--end::Section-->
+
+                 <!--begin::Text-->
+                 <p class="mb-7 mt-3">{{ $expense->exp_remarks }}</p>
+                 <!--end::Text-->
+
+                <!--begin::Content-->
+                <div class="d-flex flex-wrap mt-14">
+
+                    <div class="mr-12 d-flex flex-column mb-7">
+                        <span class="d-block font-weight-bold mb-4">Date</span>
+                        <span class="btn btn-light-primary btn-sm font-weight-bold btn-upper btn-text">{{ $expense->exp_date }}</span>
+                    </div>
+
+                    <div class="mr-12 d-flex flex-column mb-7">
+                        <span class="font-weight-bolder mb-4">Amount</span>
+                        <span class="font-weight-bolder font-size-h5 pt-1">
+                        <span class="font-weight-bold text-dark-50">RM </span>{{ $expense->exp_amount }}</span>
+                    </div>
+                   
+                    <div class="mr-12 d-flex flex-column mb-7">
+                        <span class="d-block font-weight-bold mb-4">Payment method</span>
+                        <span class="btn btn-light-primary btn-sm font-weight-bold btn-upper btn-text">{{ $expense->pay_name }}</span>
+                    </div>
+
+                </div>
+                <!--end::Content-->
+               
+            </div>
+            <!--end::Body-->
+            <!--begin::Footer-->
+            <div class="card-footer d-flex align-items-center">
+                <a href="{{ route('expenses.edit', $expense->id) }}" class="btn btn-primary mr-2"><i class="flaticon-edit"></i>Edit</a>
+                <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="btn btn-danger" type="submit"><i class="flaticon-delete"></i>Delete</button>
+                </form>
+            </div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+@endforeach
+
 @endsection

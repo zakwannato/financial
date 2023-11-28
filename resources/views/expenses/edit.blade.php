@@ -22,21 +22,22 @@
                     </g>
                 </svg>
                 <!--end::Svg Icon-->
-            </span>Back</a>
+            </span>Cancel</a>
             <!--end::Button-->
         </div>
     </div>
 
     <div class="card-body">
         <!--begin: Input-->
-        <form action="{{ route('expenses.store') }}" method="POST">
+        <form action="{{ route('expenses.update', $expense->id) }}" method="POST">
             @csrf
+            @method('PUT')
 
             <div class="card-body">
 
                 <div class="form-group">
                     <label>Description :</label>
-                    <input class="form-control" name="exp_description" />
+                    <input class="form-control" name="exp_description" value="{{ $expense->exp_description }}" />
                 </div>
 
                 <div class="form-group">
@@ -44,19 +45,20 @@
                     <select class="form-control" name="user_id" required>
                         <option value="" selected>Please select user</option>
                         @foreach($users as $user )
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ $expense->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                         @endforeach
+
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Date :</label>
-                    <input class="form-control" type="date" name="exp_date" />
+                    <input class="form-control" type="date" name="exp_date" value="{{ $expense->exp_date }}"/>
                 </div>
 
                 <div class="form-group">
                     <label>Amount :</label>
-                    <input class="form-control" type="number" name="exp_amount" />
+                    <input class="form-control" type="number" name="exp_amount" value="{{ $expense->exp_amount }}"/>
                 </div>
 
                 <div class="form-group">
@@ -64,14 +66,14 @@
                     <select class="form-control" name="pay_id" required>
                         <option value="" selected>Please select payment method</option>
                         @foreach($m_payment_methods as $m_payment_method )
-                            <option value="{{ $m_payment_method->id }}">{{ $m_payment_method->pay_name }}</option>
+                            <option value="{{ $m_payment_method->id }}" {{ $expense->pay_id == $m_payment_method->id ? 'selected' : '' }}>{{ $m_payment_method->pay_name }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Remarks :</label>
-                    <textarea class="form-control" name="exp_remarks" rows="3"></textarea>
+                    <textarea class="form-control" name="exp_remarks" rows="3">{{ $expense->exp_remarks }}</textarea>
                 </div>
 
             </div>

@@ -37,8 +37,43 @@ class ExpenseController extends Controller
             'exp_date' => $request->input('exp_date'),
             'exp_amount' => $request->input('exp_amount'),
             'pay_id' => $request->input('pay_id'),
+            'exp_description' => $request->input('exp_description'),
             'exp_remarks' => $request->input('exp_remarks')
 
+        ]);
+
+        return redirect()->route(route: 'expenses.index');
+    }
+
+    public function destroy($id)
+    {
+        $expense = Expense::find($id);
+
+        $expense->delete();
+
+        return redirect()->route(route: 'expenses.index');
+    }
+
+    public function edit($id)
+    {
+
+        $expense = Expense::find($id)->first();
+        $users = User::all();
+        $m_payment_methods = m_payment_method::all();
+
+        return view('expenses.edit')->with('expense',$expense)->with('users',$users)->with('m_payment_methods',$m_payment_methods);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $expense = Expense::where('id', $id)
+        ->update([
+            'user_id' => $request->input('user_id'),
+            'exp_date' => $request->input('exp_date'),
+            'exp_amount' => $request->input('exp_amount'),
+            'pay_id' => $request->input('pay_id'),
+            'exp_description' => $request->input('exp_description'),
+            'exp_remarks' => $request->input('exp_remarks')
         ]);
 
         return redirect()->route(route: 'expenses.index');
