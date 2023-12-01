@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\M_PaymentMethodController;
+use App\Http\Controllers\M_CommitmentController;
+use App\Http\Controllers\CommitmentController;
 use App\Http\Controllers\CreditCardController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource(name:'expenses', controller: ExpenseController::class);
-    Route::resource(name:'paymet', controller: M_PaymentMethodController::class);
+    Route::resource(name:'m_commitment', controller: M_CommitmentController::class);
+    Route::resource(name:'commitments', controller: CommitmentController::class);
+    Route::resource(name:'m_payment', controller: M_PaymentMethodController::class);
     Route::resource(name:'credit_card', controller: CreditCardController::class);
 });
 

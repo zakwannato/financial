@@ -45,19 +45,10 @@ class ExpenseController extends Controller
         return redirect()->route(route: 'expenses.index');
     }
 
-    public function destroy($id)
-    {
-        $expense = Expense::find($id);
-
-        $expense->delete();
-
-        return redirect()->route(route: 'expenses.index');
-    }
-
     public function edit($id)
     {
 
-        $expense = Expense::find($id)->first();
+        $expense = Expense::find($id);
         $users = User::all();
         $m_payment_methods = m_payment_method::all();
 
@@ -75,6 +66,15 @@ class ExpenseController extends Controller
             'exp_description' => $request->input('exp_description'),
             'exp_remarks' => $request->input('exp_remarks')
         ]);
+
+        return redirect()->route(route: 'expenses.index');
+    }
+
+    public function destroy($id)
+    {
+        $expense = Expense::find($id);
+
+        $expense->delete();
 
         return redirect()->route(route: 'expenses.index');
     }

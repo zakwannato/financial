@@ -21,6 +21,35 @@
                 <span class="menu-text">Expenses</span>
             </a>
         </li>
+
+        <li class="menu-item {{ request()->routeIs('commitments.index') ? 'menu-item-active' : '' }}">
+            <a href="{{ route('commitments.index') }}" class="menu-link">
+                <span class="menu-text">Commitment</span>
+            </a>
+        </li>
+
+        <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+            <a href="" class="menu-link menu-toggle">
+                <span class="menu-text">Settings</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                <ul class="menu-subnav">
+                    <li class="menu-item" aria-haspopup="true">
+                        <a href="{{ route('m_commitment.index') }}" class="menu-link">
+                            <span class="menu-text">Master Commitment</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item" aria-haspopup="true">
+                        <a href="{{ route('m_payment.index') }}" class="menu-link">
+                            <span class="menu-text">Master Payment Method</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
     </ul>
     <!--end::Header Nav-->
 </div>
