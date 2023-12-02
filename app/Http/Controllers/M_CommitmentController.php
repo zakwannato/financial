@@ -12,13 +12,13 @@ class M_CommitmentController extends Controller
     {
         $m_commitments = m_commitment::all();
 
-        return view('settings.master.commitment.m_commitment')->with('m_commitments',$m_commitments);
+        return view('master.commitment.m_commitment')->with('m_commitments',$m_commitments);
     }
 
     public function create()
     {
 
-        return view('settings.master.commitment.create');
+        return view('master.commitment.create');
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class M_CommitmentController extends Controller
     {
         $m_commitment = m_commitment::find($id);
 
-        return view('settings.master.commitment.edit')->with('m_commitment',$m_commitment);
+        return view('master.commitment.edit')->with('m_commitment',$m_commitment);
     }
 
     public function update(Request $request, $id)

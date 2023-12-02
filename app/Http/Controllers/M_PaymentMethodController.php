@@ -9,13 +9,13 @@ class M_PaymentMethodController extends Controller
 {
     public function index()
     {
-        return view('settings.master.payment.m_payment');
+        return view('master.payment.m_payment');
     }
 
     public function create()
     {
 
-        return view('settings.paymet.create');
+        return view('master.payment.create');
     }
 
     public function store(Request $request)

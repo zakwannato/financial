@@ -1,0 +1,10 @@
+        @charset "UTF-8";
+    .brand {
+        background-color: #404ad8;
+    }
+    
+    @media (min-width: 992px) {
+        .header {
+            background: rgb(64, 74, 216);
+            background: linear-gradient(90deg, rgba(64, 74, 216, 1) 0%, rgba(92, 113, 254, 1) 100%);
+        }
