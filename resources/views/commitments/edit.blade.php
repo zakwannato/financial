@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <label>Amount :</label>
-                    <input class="form-control" name="com_amount"/>
+                    <input class="form-control" name="com_amount" step=".01"/>
                 </div>
 
                 <div class="form-group">

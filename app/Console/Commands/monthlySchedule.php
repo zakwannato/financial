@@ -35,8 +35,11 @@ class monthlySchedule extends Command
         foreach($m_commitments as $m_commitment ){
                  $commitments = commitment::create([
                 'com_t_id' => $m_commitment->id,
-                'com_YM' => Carbon::now()->format('Y-m'),
+                'com_YM' => comMonthYear(Carbon::now()->format('Y-m-d')),
                 'pay_flag' => '0',
+                'com_amount' => $m_commitment->com_amount,
+                'com_zakwan' => $m_commitment->com_zakwan,
+                'com_rashidah' => $m_commitment->com_rashidah,
                 // 'com_amount' => '0',
                 // 'com_pay_date' => Carbon::now()->format('Y-m-d'),
              

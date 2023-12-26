@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('schedule:monthly')
-        ->monthlyOn(2, '00:00');;
+        ->everyMinute();
+        // ->monthlyOn(25, '00:00');
         // ->appendOutputTo('scheduler.log');
     }
 

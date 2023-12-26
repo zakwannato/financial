@@ -9,5 +9,5 @@ class expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'exp_date', 'exp_amount','pay_id','exp_description','exp_remarks'];
+    protected $fillable = ['user_id', 'exp_date', 'exp_YM','exp_amount','pay_id','CC_id','exp_type','exp_description','exp_remarks','exp_zakwan','exp_rashidah'];
 }

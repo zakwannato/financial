@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource(name:'m_commitment', controller: M_CommitmentController::class);
     Route::resource(name:'commitments', controller: CommitmentController::class);
     Route::resource(name:'m_payment', controller: M_PaymentMethodController::class);
-    Route::resource(name:'credit_card', controller: CreditCardController::class);
+    Route::resource(name:'credit_cards', controller: CreditCardController::class);
 });
 
 require __DIR__.'/auth.php';

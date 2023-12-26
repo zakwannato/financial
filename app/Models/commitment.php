@@ -9,5 +9,5 @@ class commitment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['com_t_id','com_YM','pay_flag','com_amount','com_pay_date'];
+    protected $fillable = ['com_t_id','com_YM','pay_flag','shared_flag','com_amount','com_pay_date','com_zakwan','com_rashidah'];
 }

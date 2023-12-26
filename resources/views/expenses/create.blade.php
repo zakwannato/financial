@@ -40,38 +40,30 @@
                 </div>
 
                 <div class="form-group">
-                    <label>User :</label>
-                    <select class="form-control" name="user_id" required>
-                        <option value="" selected>Please select user</option>
-                        @foreach($users as $user )
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label>Date :</label>
                     <input class="form-control" type="date" name="exp_date" />
                 </div>
 
                 <div class="form-group">
                     <label>Amount :</label>
-                    <input class="form-control" type="number" name="exp_amount" />
+                    <input class="form-control" type="number" step=".01" name="exp_amount" />
                 </div>
 
-                <div class="form-group">
-                    <label>Payment method :</label>
-                    <select class="form-control" name="pay_id" required>
-                        <option value="" selected>Please select payment method</option>
-                        @foreach($m_payment_methods as $m_payment_method )
-                            <option value="{{ $m_payment_method->id }}">{{ $m_payment_method->pay_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                @livewire('select-credit-card')
 
                 <div class="form-group">
                     <label>Remarks :</label>
                     <textarea class="form-control" name="exp_remarks" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Zakwan :</label>
+                    <input class="form-control" value="50" name="exp_zakwan" />
+                </div>
+
+                <div class="form-group">
+                    <label>Rashidah :</label>
+                    <input class="form-control" value="50" name="exp_rashidah" />
                 </div>
 
             </div>

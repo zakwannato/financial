@@ -27,19 +27,48 @@ class ExpenseController extends Controller
         $users = User::all();
         $m_payment_methods = m_payment_method::all();
 
-        return view('expenses.create',['users' => $users],['m_payment_methods' => $m_payment_methods]);
+        return view('expenses.create',['users' => $users]);
     }
 
     public function store(Request $request)
     {
+        // dd($request->input('pay_id'));
+
+        $YM = $request->input('exp_date');
+        $userid = $request->input('user_id');
+        $CC_id = $request->input('CC_id');
+        $exp_YM  = null;
+        $pay_id = $request->input('pay_id');
+
+        // dd($pay_id );
+
+        if($pay_id == '2' && $request->has(key:'CC_id'))
+        {
+            
+            $exp_YM = cutOffMonthYearCC($YM,$userid,$CC_id);
+            // dd('CC');
+            
+        }
+        else
+        {
+            $exp_YM = cutOffMonthYear($YM);
+            // dd('NOT CC');
+        }
+        
+        
         $expense = Expense::create([
             'user_id' => $request->input('user_id'),
             'exp_date' => $request->input('exp_date'),
+            'exp_YM' => $exp_YM,
             'exp_amount' => $request->input('exp_amount'),
             'pay_id' => $request->input('pay_id'),
+            'CC_id' => $request->input('CC_id'),
+            'exp_type' => $request->input('exp_type'),
             'exp_description' => $request->input('exp_description'),
-            'exp_remarks' => $request->input('exp_remarks')
-
+            'exp_remarks' => $request->input('exp_remarks'),
+            'exp_zakwan' => $request->input('exp_zakwan'),
+            'exp_rashidah' => $request->input('exp_rashidah')
+            
         ]);
 
         return redirect()->route(route: 'expenses.index');

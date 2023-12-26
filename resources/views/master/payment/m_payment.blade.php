@@ -3,4 +3,6 @@
 @section('content')
 
 Payment Methods
+
+    @livewire('clicker')
 @endsection
